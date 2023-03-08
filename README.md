@@ -24,8 +24,8 @@
 
 ## 广告
 
-1. 我们是CZL Express（苍正国际快递），在上海，有需要发国际快递可以在我们官网[www.czl.net](www.czl.net)查价看看，合适的话联系我司客服发件；
-2. 请求：如果您使用了本源码，请在下面留言，可以的话加上[苍正国际快递](www.czl.net)友情链接，感谢。
+1. 我们是CZL Express（苍正国际快递），在上海，有需要发国际快递可以在我们官网[www.czl.net](https://www.czl.net)查价看看，合适的话联系我司客服发件；
+2. 请求：如果您使用了本源码，请在下面留言，可以的话加上[苍正国际快递](https://www.czl.net)友情链接，感谢。
 
 
 ### 借鉴于[https://github.com/JiChao99/GPT3.5-H5-lite-page](https://github.com/JiChao99/GPT3.5-H5-lite-page) ，感谢 @JiChao99
