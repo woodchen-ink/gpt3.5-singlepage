@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+    <title>Chatgpt 3.5</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel='stylesheet' href='../css/gpt3.5.css'>
+    <script src="../js/jquery-3.6.2.min.js"></script> 
+    <script src="../js/markdown-it@13.0.1.min.js"></script>
+</head>
+
+<body>
+    <div class="main">
+    <h1 style="display: inline-block;" >Chatgpt 3.5</h1>
+    <div id="chatbox"></div>
+    <textarea id="userInput" type="text" rows="4" placeholder="在这里输入问题...换行请按Ctrl+Enter"></textarea>
+    <br/>
+    <input id="sendButton" type="button" value="询问">
+</div>
+
+    <script>
+        const url = new URL(window.location.href);
+        const chatbox = $("#chatbox");
+        const userInput = $("#userInput");
+        const sendButton = $("#sendButton");
+
+        $(document).ready(function() {
+            const messages = [];
+
+            sendButton.on("click", () => {
+                const message = userInput.val();
+                if (message) {
+                    messages.push({
+                        "role": "user",
+                        "content": message
+                    });
+                    chatbox.append(`<pre class="question">Q: ${message}</pre>`);
+                    userInput.val("");
+                    sendButton.val("询问中...");
+                    sendButton.prop("disabled", true);
+                    fetchMessages();
+                }
+            });
+
+            userInput.on("keydown", (event) => {
+                if (event.keyCode === 13 && !event.ctrlKey && !event.shiftKey) { // Enter key without Ctrl key
+                    event.preventDefault();
+                    sendButton.click();
+                } else if (event.keyCode === 13 && (event.ctrlKey || event.shiftKey)) { // Enter key with Ctrl key
+                    event.preventDefault();
+                    const cursorPosition = userInput.prop("selectionStart");
+                    const currentValue = userInput.val();
+                    userInput.val(
+                        currentValue.slice(0, cursorPosition) +
+                        "\n" +
+                        currentValue.slice(cursorPosition)
+                    );
+                    // Set the cursor position after the new line character
+                    userInput.prop("selectionStart", cursorPosition + 1);
+                    userInput.prop("selectionEnd", cursorPosition + 1);
+                }
+            });
+
+            function fetchMessages() {
+                try {
+                    var settings = {
+                        "url": "https://api.openai.com/v1/chat/completions",
+                        "method": "POST",
+                        "timeout": 0,
+                        "headers": {
+                            "Authorization": "Bearer " + "这里输入自己的KEY",
+                            "Content-Type": "application/json"
+                        },
+                        "data": JSON.stringify({
+                            "model": "gpt-3.5-turbo",
+                            "messages": messages
+                        }),
+                    };
+
+                    $.ajax(settings).done(function(response) {
+                        console.log(response);
+
+                        const message = response.choices[0].message;
+                        messages.push({
+                            "role": message.role,
+                            "content": message.content
+                        });
+
+                        const htmlText = window.markdownit().render(message.content);
+                        chatbox.append(`<div class="answer">A: ${htmlText}</div>`);
+                        sendButton.val("询问");
+                        sendButton.prop("disabled", false);
+
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        sendButton.val("Oops, something went wrong");
+                        chatbox.append(`<p>哎呀, 出现问题了, 可能是官方接口挂了, 稍后再试</p>`);
+                    });
+
+                } catch (error) {
+                    sendButton.val("Oops, something went wrong");
+                    chatbox.append(`<p>哎呀, JavaScript代码有问题, 请检查代码</p>`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
