@@ -4,6 +4,10 @@
 
 基于openai的chatgpt3.5开发的单页面应用
 
+另做了一版基于MDUI的，更轻便好看，地址：https://github.com/woodchen-ink/ChatGPT-3.5-MDUI
+
+### 提供接口代理服务，基于我们在**弗吉尼亚北部的15M带宽服务器**，一个月5块，给单独的API调用地址，有意者联系我：wood#czl.net（#换成@）
+
 ## 例子
 
 ![](https://img.cdn.czl.net/i/2023/03/08/134339.webp)
