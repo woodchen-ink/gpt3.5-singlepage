@@ -1,10 +1,15 @@
 # Chatgpt3.5
 
+
+
 ## 简介
 
 基于openai的chatgpt3.5开发的单页面应用
 
 另做了一版基于MDUI的，更轻便好看，地址：https://github.com/woodchen-ink/ChatGPT-3.5-MDUI
+
+## 广告
+[CZL Chat](https://chat.czl.net)，稳定商业版AI服务。
 
 ### 接口代理，可参考https://woodchen.ink/1224.html ，稳定免费
 
