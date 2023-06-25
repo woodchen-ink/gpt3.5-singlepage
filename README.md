@@ -9,7 +9,8 @@
 另做了一版基于MDUI的，更轻便好看，地址：https://github.com/woodchen-ink/ChatGPT-3.5-MDUI
 
 ## 广告
-[CZL Chat](https://chat.czl.net)，稳定商业版AI服务。
+- [CZL Chat](https://chat.czl.net)，稳定商业版AI服务。
+- [CZLOapi](https://oapi.czl.net)，OPENAI代理服务，无需翻墙。
 
 ### 接口代理，可参考https://woodchen.ink/1224.html ，稳定免费
 
